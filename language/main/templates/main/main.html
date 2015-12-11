@@ -1,0 +1,17 @@
+<!doctype html>
+{% load staticfiles %}
+<html>
+<head>
+<title>程式语言小百科</title>
+<meta charset=utf-8>
+<link rel = stylesheet href = {% static 'main/css/main.css' %}>
+</head>
+<body>
+<h1>Django说--Hello world!</h1>
+<p>{{message}}</p>
+<p>现在时间：<span style=color:red;>{{time}}</span></p>
+<a href = {% url 'wiki:wiki' %}>下一页</a><br>
+<a href = {% url 'wiki:about' %}>关于城市语言小百科</a>
+<p>{{now}}</p>
+</body>
+</html>
