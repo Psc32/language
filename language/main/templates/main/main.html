@@ -2,8 +2,19 @@
 {% block heading %} Django说--Hello world! {% endblock %}
 {% block content %}
 <p>{{message}}</p>
-<p>现在时间：<span style=color:red;>{{time}}</span></p>
-<a href = {% url 'wiki:wiki' %}>下一页</a><br>
-<a href = {% url 'wiki:about' %}>关于城市语言小百科</a>
+{% if messages %}
+ {% for message in messages %}
+ <p {% if message.tags %} class={{message.tags}} {% endif %}>{{message}}</p>
+ {% endfor %}
+{% endif %}
+<!--  <p>现在时间：<span style=color:red;>{{time}}</span></p>-->
+<p><a href = {% url 'wiki:wiki' %}>下一页</a></p>
+<p><a href = {% url 'wiki:about' %}>关于城市语言小百科</p>
+{% if user.is_authenticated %}
+ <p><a href={% url 'account:userLogout' %}>登出 ({{user.username}})</a></p>
+{% else %}
+<p><a href = {% url 'account:register' %}>注册</p>
+<p><a href={% url 'account:userLogin' %}>登入</a></p>
+{% endif %}
 <p>{{now}}</p>
 {% endblock %}
